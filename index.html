@@ -1,0 +1,72 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script language="javascript">
+            // Prices of each item
+            const dogPrice = 4.80;
+            const friesPrice = 3.95;
+            const sodaPrice = 1.99;
+
+            // Prompt the user for how many of each item they want.
+            var numDogs = parseInt(prompt("How many hotdogs do you want?", 2));
+            var numFries = parseInt(prompt("How many fries do you want?", 1));
+            var numSoda = parseInt(prompt("How many sodas do you want?", 1));
+
+            // Display the cost of each item and how much the user ordered.
+            document.write("Hot Dog Total Cost: $" + showMoney(dogPrice * numDogs) + "<br>Hot Dog Quantity: " + numDogs + "<br>");
+            document.write("Fries Total Cost: $" + showMoney(friesPrice * numFries) + "<br>Fries Quantity: " + numFries + "<br>");
+            document.write("Soda Total Cost: $" + showMoney(sodaPrice * numSoda) + "<br>Soda Quantity: " + numSoda + "<br><br>");
+
+            /* showMoney function - Returns a float point number rounded to two
+             * decimal places.
+             */ 
+            function showMoney(num) {
+                // Find the floating point number we are looking for
+                var floatNum = parseFloat(num);
+
+                // Round it to two decimal places
+                var roundedNum = Math.round(num * 100) / 100;
+
+                // Determine which type of number we're working with
+                var numStr = roundedNum.toString();
+
+                // If we have a whole number, add two zeros after
+                if (numStr.indexOf('.') === -1) {
+                    numStr += ".00";
+                } else {
+                    var decimal = numStr.split('.')[1];
+
+                    // If number only has one decimal place, add a zero.
+                    if (decimal.length === 1) {
+                        numStr += '0';
+                    }
+                }
+
+                // Return the rounded number
+                return numStr;
+            }
+
+            // Calculate subtotal and round to 2 decimal places.
+            var subtotal = showMoney((dogPrice * numDogs) + (friesPrice * numFries) + (sodaPrice * numSoda));
+
+            // Write subtotal before the discount.
+            document.write("Subtotal before discount: $" + subtotal + "<br>");
+
+            // If the total is at least $25, add the 10 % discount.
+            if (subtotal >= 25) {
+                const discount = 0.1;
+                document.write("10% discount applied<br>");
+                subtotal *= (1 - discount);
+            }
+            subtotal = showMoney(subtotal);
+            document.write("Subtotal after discount: $" + subtotal + "<br><br>");
+
+            // Implement the Massachusetts sales tax
+            document.write("Massachusetts Sales Tax: 6.25% <br>");
+            subtotal = showMoney(subtotal * 1.0625);
+            document.write("Final total: $" + subtotal);
+        </script>
+    </body>
+</html>
