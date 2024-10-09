@@ -65,8 +65,9 @@
 
             // Implement the Massachusetts sales tax
             document.write("Massachusetts Sales Tax: 6.25% <br>");
-            subtotal = showMoney(subtotal * 1.0625);
-            document.write("Final total: $" + subtotal);
+            var finalTotal = showMoney(subtotal * 1.0625);
+            document.write("Tax amount: " + (finalTotal - subtotal));
+            document.write("Final total: $" + finalTotal);
         </script>
     </body>
 </html>
